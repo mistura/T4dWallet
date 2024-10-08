@@ -1,24 +1,31 @@
-import logo from './logo.svg';
 import './App.css';
+import { ConfigProvider } from 'antd';
+import { BrowserRouter, Route, Routes} from 'react-router-dom';
+import AppRoutes from './Views/Routes/AppRoutes';
+import Login from './Views/Onboarding/Login';
+import Layout from './Component/Layout/Layout';
+import Home from './Views/Home';
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Welcome to <a className="App-link" href="https://github.com/pelumiadebayo/T4dWallet">T4dWallet</a> System.
-        </p>
-        <a
-          className="App-link"
-          href="https://github.com/pelumiadebayo/T4dWallet/wiki"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn more
-        </a>
-      </header>
-    </div>
+    <ConfigProvider theme={{
+      token: {
+        colorPrimary: "#074FBA",
+      },
+      colors: {
+        primary: 'var(--primary)', 
+      },
+      }}>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/login" element={<Login/>} />
+        <Route path="/*" element={<AppRoutes/>} />
+        <Route path="/layout" element={<Layout/>} />
+        <Route path="/home" element={<Home/>} />
+      </Routes>
+    </BrowserRouter>
+  </ConfigProvider>
   );
 }
 
